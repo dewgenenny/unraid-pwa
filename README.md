@@ -27,3 +27,11 @@ Open `index.html` in a browser (or deploy the contents of `src` to GitHub Pages)
 Enter the URL of your Unraid server and an API token in the form at the top of the page.
 These values are saved to `localStorage` on your device and used for subsequent requests.
 After saving, the application will query the server for basic information such as the Unraid version and display the JSON response.
+
+### Self-signed certificates
+
+If your Unraid server uses a self-signed TLS certificate you can check the
+"Allow self-signed certificates" option in the settings form. When running in
+Node (for example during tests), this will disable certificate validation so the
+GraphQL requests succeed. Browsers still require you to manually trust the
+certificate the first time you connect.
