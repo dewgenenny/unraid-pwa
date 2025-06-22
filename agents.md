@@ -10,3 +10,13 @@ Rules to follow as an agent (please review each time):
 - Always remember our focus on delivering a statically hosted PWA - this must never be broken
 - Always update README and agents.md to reflect the current state of the app. Agents.md should capture any of your concerns or planned next steps.
 
+
+## Current State
+
+A basic PWA scaffold has been created using plain HTML and JavaScript. Service worker registration and a placeholder GraphQL helper are included. Simple Node based tests verify the manifest and exported functions.
+
+## Next Steps
+
+- Implement UI components for interacting with the Unraid GraphQL API.
+- Expand test coverage as features are added.
+- Investigate build tooling for production assets while maintaining static hosting.
