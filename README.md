@@ -14,9 +14,16 @@ npm test
 ## Project Structure
 
 - `src/index.html` – main entry point that registers the service worker.
-- `src/main.js` – JavaScript entry module with a placeholder GraphQL fetch helper.
+- `src/main.js` – JavaScript entry module with helpers for storing connection settings and querying the Unraid GraphQL API.
 - `src/sw.js` – service worker providing offline capabilities.
 - `src/manifest.json` – PWA manifest configuration.
 - `tests/` – simple assertion based tests run via Node.
 
 The project is designed to be hosted on GitHub Pages without any server side components.
+
+## Usage
+
+Open `index.html` in a browser (or deploy the contents of `src` to GitHub Pages).
+Enter the URL of your Unraid server and an API token in the form at the top of the page.
+These values are saved to `localStorage` on your device and used for subsequent requests.
+After saving, the application will query the server for basic information such as the Unraid version and display the JSON response.
