@@ -8,6 +8,12 @@
 </head>
 <body>
     <h1>Unraid PWA</h1>
+    <div id="settings">
+        <label>Host: <input id="host" type="text" placeholder="https://my-unraid"/></label>
+        <label>API Token: <input id="token" type="password"/></label>
+        <button id="saveSettings">Save</button>
+    </div>
+    <pre id="info"></pre>
     <div id="app"></div>
     <script src="./main.js" type="module"></script>
 </body>

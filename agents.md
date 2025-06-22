@@ -13,10 +13,10 @@ Rules to follow as an agent (please review each time):
 
 ## Current State
 
-A basic PWA scaffold has been created using plain HTML and JavaScript. Service worker registration and a placeholder GraphQL helper are included. Simple Node based tests verify the manifest and exported functions.
+The PWA now includes a small settings form allowing a host URL and API token to be stored in `localStorage`. `main.js` exposes helpers for saving these values and for performing authenticated requests to the Unraid GraphQL endpoint. The page fetches and displays the server version as a basic example. Tests cover the new settings logic.
 
 ## Next Steps
 
-- Implement UI components for interacting with the Unraid GraphQL API.
-- Expand test coverage as features are added.
+- Extend the UI to display more data from Unraid (array status, VMs, etc.).
+- Continue expanding test coverage for new features.
 - Investigate build tooling for production assets while maintaining static hosting.
