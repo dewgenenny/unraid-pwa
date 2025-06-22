@@ -1,6 +1,6 @@
 This is a new Unraid PWA that can be used to access and control unraid instances.
 
-The app is designed to be statically hosted on GitHub pages, with only local on device storage leveraged along with the Unraid GraphQL interface.
+The app is designed to be statically hosted on GitHub pages, with only local on device storage leveraged along with the Unraid GraphQL interface (schema.json contains the description of the interface).
 
 Rules to follow as an agent (please review each time):
 
