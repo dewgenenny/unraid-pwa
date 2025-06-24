@@ -35,3 +35,14 @@ If your Unraid server uses a self-signed TLS certificate you can check the
 Node (for example during tests), this will disable certificate validation so the
 GraphQL requests succeed. Browsers still require you to manually trust the
 certificate the first time you connect.
+
+## Docker
+
+You can run the PWA using Docker which serves the static files via Nginx:
+
+```bash
+docker build -t unraid-pwa .
+docker run -d -p 8080:80 unraid-pwa
+```
+
+The application will then be available at `http://localhost:8080`.
