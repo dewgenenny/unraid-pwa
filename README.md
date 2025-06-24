@@ -46,3 +46,7 @@ docker run -d -p 8080:80 unraid-pwa
 ```
 
 The application will then be available at `http://localhost:8080`.
+
+## CI/CD
+
+Pushes to the `main` branch trigger a GitHub Actions workflow that runs the test suite and then builds and publishes a Docker image. The image is pushed to Docker Hub using the account specified in the `DOCKERHUB_USERNAME` secret and is tagged as `latest`. A personal access token for that account should be stored in the `DOCKERHUB_TOKEN` secret.

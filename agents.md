@@ -14,9 +14,11 @@ Rules to follow as an agent (please review each time):
 ## Current State
 
 The PWA now includes a small settings form allowing a host URL and API token to be stored in `localStorage`. An option also lets Node clients ignore TLS errors when using self-signed certificates. `main.js` exposes helpers for saving these values and for performing authenticated requests to the Unraid GraphQL endpoint. The page fetches and displays the server version as a basic example. Tests cover the settings logic including the new self-signed option. A simple `Dockerfile` was added so the app can be served from an Unraid server using Nginx, avoiding CORS issues when hosted locally.
+A GitHub Actions workflow runs tests and publishes the Docker image to Docker Hub on pushes to `main`.
 
 ## Next Steps
 
 - Extend the UI to display more data from Unraid (array status, VMs, etc.).
 - Continue expanding test coverage for new features.
 - Investigate build tooling for production assets while maintaining static hosting.
+
