@@ -13,7 +13,7 @@ Rules to follow as an agent (please review each time):
 
 ## Current State
 
-The PWA now includes a small settings form allowing a host URL and API token to be stored in `localStorage`. `main.js` exposes helpers for saving these values and for performing authenticated requests to the Unraid GraphQL endpoint. The page fetches and displays the server version as a basic example. Tests cover the new settings logic.
+The PWA now includes a small settings form allowing a host URL and API token to be stored in `localStorage`. An option also lets Node clients ignore TLS errors when using self-signed certificates. `main.js` exposes helpers for saving these values and for performing authenticated requests to the Unraid GraphQL endpoint. The page fetches and displays the server version as a basic example. Tests cover the settings logic including the new self-signed option.
 
 ## Next Steps
 
