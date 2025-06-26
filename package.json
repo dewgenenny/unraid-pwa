@@ -4,5 +4,8 @@
   "type": "module",
   "scripts": {
     "test": "node tests/run-tests.cjs"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
   }
 }
