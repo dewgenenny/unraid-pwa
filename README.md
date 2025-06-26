@@ -11,8 +11,9 @@ The application lives in the `src` directory and is built using plain HTML and J
 npm test
 ```
 
-The tests run in Node's CommonJS environment and dynamically import the ES module
-from `src/main.js`.
+`package.json` declares `"type": "module"`, so Node treats `.js` files as ES modules. The test files use the `.cjs`
+extension so they continue to run in a CommonJS environment while dynamically
+importing the module from `src/main.js`.
 
 ## Project Structure
 

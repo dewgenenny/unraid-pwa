@@ -5,7 +5,8 @@ let failed = false;
 
 // run each test file
 fs.readdirSync(__dirname)
-  .filter(f => f.endsWith('.test.js'))
+  // only execute files following the .test.cjs naming pattern
+  .filter(f => f.endsWith('.test.cjs'))
   .forEach(file => {
     const result = require(path.join(__dirname, file));
     if (result === false) {
