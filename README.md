@@ -22,8 +22,10 @@ importing the module from `src/main.js`.
 - `src/sw.js` – service worker providing offline capabilities.
 - `src/manifest.json` – PWA manifest configuration.
 - `tests/` – simple assertion based tests run via Node.
+- `server/` – lightweight Node server used when running via Docker.
 
-The project is designed to be hosted on GitHub Pages without any server side components.
+The project can still be hosted on GitHub Pages without any server side components.
+A small Node server is provided for convenience when running in Docker.
 
 ## Usage
 
@@ -42,11 +44,13 @@ certificate the first time you connect.
 
 ## Docker
 
-You can run the PWA using Docker which serves the static files via Nginx:
+You can run the PWA using Docker which now starts a small Node server. The
+server serves the static files and proxies GraphQL requests to your Unraid
+instance, handling CSRF cookies automatically:
 
 ```bash
 docker build -t unraid-pwa .
-docker run -d -p 8080:80 unraid-pwa
+docker run -d -p 8080:3000 -e UNRAID_HOST=https://my-unraid unraid-pwa
 ```
 
 The application will then be available at `http://localhost:8080`.
