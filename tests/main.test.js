@@ -1,11 +1,11 @@
 const assert = require('assert');
-const { fetchUnraidData } = require('../src/main.js');
 
 async function dummyFetch() {
   return { json: async () => ({ ok: true }) };
 }
 
 (async () => {
+  const { fetchUnraidData } = await import('../src/main.js');
   try {
     assert.strictEqual(typeof fetchUnraidData, 'function', 'fetchUnraidData should be a function');
     const result = fetchUnraidData('query { version }', dummyFetch);
