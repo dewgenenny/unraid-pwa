@@ -14,7 +14,7 @@ Rules to follow as an agent (please review each time):
 ## Current State
 
 A small settings form allows a host URL and API token to be stored in `localStorage`. An option lets Node clients ignore TLS errors when using self-signed certificates. `main.js` exposes helpers for saving these values and for performing authenticated requests to the Unraid GraphQL endpoint. The page fetches and displays the server version as a basic example. Tests cover the settings logic including the self-signed option. A lightweight Node server now serves the static files and proxies GraphQL requests, handling CSRF cookies so the app can be hosted alongside an Unraid instance. Docker runs this server by default.
-A recent update adds MIME type handling to this server so module scripts load correctly in the browser.
+A recent update adds MIME type handling to this server so module scripts load correctly in the browser. The server can also skip TLS verification when `ALLOW_SELF_SIGNED=true` which helps when the Unraid instance uses a self-signed certificate. Proxy errors are now logged to aid debugging.
 A GitHub Actions workflow runs tests and publishes the Docker image to Docker Hub on pushes to `main`.
 
 `package.json` now declares the project as an ES module package. Tests were renamed with the `.cjs` extension so they continue to execute in CommonJS mode while dynamically importing `src/main.js`.
@@ -25,4 +25,5 @@ A GitHub Actions workflow runs tests and publishes the Docker image to Docker Hu
 - Continue expanding test coverage for new features.
 - Investigate build tooling for production assets while maintaining static hosting.
 - Improve the proxy server and add more automated tests for it.
+- Ensure new self-signed handling is exercised by integration tests.
 

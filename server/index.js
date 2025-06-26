@@ -1,6 +1,7 @@
 import express, { json as bodyParser, staticMiddleware } from './micro-express.js';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { Agent as HttpsAgent } from 'https';
 
 // factory to create the express application so tests can instantiate it
 export function createApp(fetchImpl = fetch) {
@@ -18,6 +19,10 @@ export function createApp(fetchImpl = fetch) {
     throw new Error('UNRAID_HOST environment variable is required');
   }
   const UNRAID_TOKEN = process.env.UNRAID_TOKEN || '';
+  const ALLOW_SELF_SIGNED = process.env.ALLOW_SELF_SIGNED === 'true';
+  const httpsAgent = ALLOW_SELF_SIGNED && UNRAID_HOST.startsWith('https')
+    ? new HttpsAgent({ rejectUnauthorized: false })
+    : undefined;
 
   let cookies = '';
   let csrfToken = '';
@@ -30,7 +35,8 @@ export function createApp(fetchImpl = fetch) {
     const res = await fetchImpl(`${UNRAID_HOST}/graphql`, {
       method: 'POST',
       headers,
-      body: JSON.stringify({ query: 'query { csrfToken }' })
+      body: JSON.stringify({ query: 'query { csrfToken }' }),
+      agent: httpsAgent
     });
     const setCookie = res.headers.get('set-cookie');
     if (setCookie) cookies = setCookie;
@@ -54,7 +60,8 @@ export function createApp(fetchImpl = fetch) {
       const upstream = await fetchImpl(`${UNRAID_HOST}/graphql`, {
         method: 'POST',
         headers,
-        body: JSON.stringify(req.body)
+        body: JSON.stringify(req.body),
+        agent: httpsAgent
       });
       const newCookie = upstream.headers.get('set-cookie');
       if (newCookie) cookies = newCookie;
@@ -62,6 +69,7 @@ export function createApp(fetchImpl = fetch) {
       res.set('Content-Type', 'application/json');
       res.send(await upstream.text());
     } catch (err) {
+      console.error('Proxy error:', err);
       res.status(500).json({ error: err.message });
     }
   });
