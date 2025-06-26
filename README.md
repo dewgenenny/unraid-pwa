@@ -24,6 +24,9 @@ importing the module from `src/main.js`.
 - `tests/` – simple assertion based tests run via Node.
 - `server/` – lightweight Node server used when running via Docker.
 
+The server now sets proper MIME types for static assets so modern browsers can
+load ES module scripts without errors.
+
 The project can still be hosted on GitHub Pages without any server side components.
 A small Node server is provided for convenience when running in Docker.
 
