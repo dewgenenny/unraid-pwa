@@ -45,12 +45,25 @@ export function json() {
 }
 
 export function staticMiddleware(dir) {
+  const mimeTypes = {
+    '.html': 'text/html',
+    '.js': 'text/javascript',
+    '.json': 'application/json',
+    '.css': 'text/css',
+    '.wasm': 'application/wasm',
+    '.svg': 'image/svg+xml',
+    '.ico': 'image/x-icon'
+  };
+
   return (req, res, next) => {
     if (req.method !== 'GET') return next();
     const file = req.url === '/' ? '/index.html' : req.url;
     const filePath = path.join(dir, file);
     fs.readFile(filePath, (err, data) => {
       if (err) return next();
+      const ext = path.extname(filePath);
+      const type = mimeTypes[ext] || 'application/octet-stream';
+      res.setHeader('Content-Type', type);
       res.end(data);
     });
   };
