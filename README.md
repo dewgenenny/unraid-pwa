@@ -11,6 +11,9 @@ The application lives in the `src` directory and is built using plain HTML and J
 npm test
 ```
 
+The tests run in Node's CommonJS environment and dynamically import the ES module
+from `src/main.js`.
+
 ## Project Structure
 
 - `src/index.html` – main entry point that registers the service worker.

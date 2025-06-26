@@ -1,5 +1,4 @@
 const assert = require('assert');
-const { fetchUnraidData, setSettings } = require('../src/main.js');
 
 // minimal localStorage mock
 global.localStorage = {
@@ -9,6 +8,7 @@ global.localStorage = {
 };
 
 (async () => {
+  const { fetchUnraidData, setSettings } = await import('../src/main.js');
   let captured;
   async function dummyFetch(url, options) {
     captured = { url, options };
