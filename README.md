@@ -45,6 +45,10 @@ Node (for example during tests), this will disable certificate validation so the
 GraphQL requests succeed. Browsers still require you to manually trust the
 certificate the first time you connect.
 
+When running the Docker proxy server you can achieve the same behaviour by
+setting the `ALLOW_SELF_SIGNED` environment variable to `true`. This will cause
+the server to ignore TLS validation errors when contacting your Unraid instance.
+
 ## Docker
 
 You can run the PWA using Docker which now starts a small Node server. The
@@ -53,7 +57,10 @@ instance, handling CSRF cookies automatically:
 
 ```bash
 docker build -t unraid-pwa .
-docker run -d -p 8080:3000 -e UNRAID_HOST=https://my-unraid unraid-pwa
+docker run -d -p 8080:3000 \
+  -e UNRAID_HOST=https://my-unraid \
+  -e ALLOW_SELF_SIGNED=true \
+  unraid-pwa
 ```
 
 The application will then be available at `http://localhost:8080`.
