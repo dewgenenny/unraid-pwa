@@ -20,6 +20,12 @@ export function createApp(fetchImpl = fetch) {
   }
   const UNRAID_TOKEN = process.env.UNRAID_TOKEN || '';
   const ALLOW_SELF_SIGNED = process.env.ALLOW_SELF_SIGNED === 'true';
+
+  if (ALLOW_SELF_SIGNED && UNRAID_HOST.startsWith('https')) {
+    // instruct Node to allow self-signed certificates when contacting Unraid
+    process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
+  }
+
   const httpsAgent = ALLOW_SELF_SIGNED && UNRAID_HOST.startsWith('https')
     ? new HttpsAgent({ rejectUnauthorized: false })
     : undefined;

@@ -25,6 +25,7 @@ const assert = require('assert');
     try {
       assert(calls[0].agent, 'agent should be provided for self-signed');
       assert.strictEqual(calls[0].agent.options.rejectUnauthorized, false);
+      assert.strictEqual(process.env.NODE_TLS_REJECT_UNAUTHORIZED, '0');
       module.exports = true;
     } catch (err) {
       console.error(err);
