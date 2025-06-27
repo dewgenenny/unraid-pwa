@@ -47,7 +47,8 @@ certificate the first time you connect.
 
 When running the Docker proxy server you can achieve the same behaviour by
 setting the `ALLOW_SELF_SIGNED` environment variable to `true`. This will cause
-the server to ignore TLS validation errors when contacting your Unraid instance.
+the server to ignore TLS validation errors when contacting your Unraid instance
+by setting `NODE_TLS_REJECT_UNAUTHORIZED=0` internally.
 
 ## Docker
 
